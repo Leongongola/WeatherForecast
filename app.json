@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "WeatherForecast",
+    "slug": "WeatherForecast",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/weather/cloudy.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/cloudhome.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#3C6FD1"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/cloudhome.png",
+        "backgroundColor": "#8EAEED"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
