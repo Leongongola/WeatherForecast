@@ -57,10 +57,63 @@ const App = () => {
           <Text>17°C</Text>
         </View>
       </View>
-      <View>
-        <Text>Forecast</Text>
+      <View className="content-start">
+        <Text className="t">Forecast</Text>
       </View>
-      <View className="bg-white p-5 w-11/12 mt-4 rounded-lg"></View>
+      <View className="bg-white p-5 w-11/12 mt-4 rounded-lg">
+        <Text>Partly Cloudly</Text>
+        <View className="flex-row">
+          <Text>April 21, 2024</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/clouds/day-cloud-sunny.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Monday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/wind/Wind.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Monday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/clouds/cloud-windy.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Monday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/moon/moon-with-wind.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Monday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/lighting/lighting.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Monday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/clouds/day-cloud-snow.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Monday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+      </View>
       <StatusBar style="auto" />
     </View>
   );
