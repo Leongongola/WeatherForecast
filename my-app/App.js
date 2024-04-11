@@ -39,6 +39,24 @@ const App = () => {
     const { visibility } = weatherData;
     const { sunrise, sunset } = weatherData.sys;
 
+    const convertUnixTimestampToTime = (unixTimestamp) => {
+      const date = new Date(unixTimestamp * 1000);
+      let hours = date.getHours();
+      const minutes = "0" + date.getMinutes();
+
+      // Convert hours to 12-hour notation
+      hours = hours % 12 || 12;
+
+      const formattedTime = hours + ":" + minutes.substr(-2);
+      return formattedTime;
+    };
+
+    // Example sunrise and sunset timestamps
+
+    // Convert timestamps to readable time format
+    const sunriseTime = convertUnixTimestampToTime(sunrise);
+    const sunsetTime = convertUnixTimestampToTime(sunset);
+
     return (
       <View className="bg-sky-800" style="flex items-center">
         <View className="flex-row justify-between bg-sky-800">
@@ -94,10 +112,24 @@ const App = () => {
           </View>
         </View>
         <View className="mt-4">
-          <Text className="text-white">
-            High Temp: {Math.floor(temp_max)}°C
-          </Text>
-          <Text className="text-white">Low Temp: {Math.floor(temp_min)}°C</Text>
+          <View className="flex-row justify-between border-2 border-white rounded-xl p-2 pt-4 pb-4 mb-1">
+            <Text className="text-white">
+              Feels Like:{Math.floor(feels_like)}°C
+            </Text>
+          </View>
+
+          <View className="flex-row justify-between border-2 border-white rounded-xl p-2 pt-4 pb-4 mb-1">
+            <Text className="text-white">
+              High Temp: {Math.floor(temp_max)}°C
+            </Text>
+            <Text className="text-white">
+              Low Temp: {Math.floor(temp_min)}°C
+            </Text>
+          </View>
+          <View className="flex-row justify-between border-2 border-white rounded-xl p-2  pt-4 pb-4 mt-1">
+            <Text className="text-white">Sunrise: {sunriseTime}am</Text>
+            <Text className="text-white">Sunset: {sunsetTime}pm</Text>
+          </View>
         </View>
       </View>
     );
