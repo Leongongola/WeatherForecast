@@ -3,54 +3,117 @@ import { StatusBar, View, Text, Image } from "react-native";
 
 const App = () => {
   return (
-    <View className="bg-gray-200 min-h-screen flex flex-col justify-center items-center">
-      {/* Calgary Weather */}
-      <View className="bg-white p-6 rounded-lg shadow-md w-80">
-        <Text className="text-2xl font-semibold mb-4">Calgary Weather</Text>
-        <Text className="text-gray-600 mb-4">April 8, 2024</Text>
-        <View className="flex justify-between">
-          <View className="flex items-center">
-            <Text className="text-3xl mr-2">☀️</Text>
-            <Image
-              source={require("./assets/Cloudy.png")} // Replace './path/to/your/image.png' with the actual path to your image file
-              style={{ width: 200, height: 200 }} // Adjust the width and height as needed
-            />
-            <Text>Sunny</Text>
-          </View>
-          <Text className="text-2xl">14°C</Text>
-        </View>
-        {/* Add hourly forecast here */}
-        {/* Add daily forecast here */}
+    <View className="bg-slate-300 min-h-screen flex flex-col justify-center items-center">
+      <View className="flex-row justify-between bg-slate-300  w-11/12 pt-4 pb-4 pr-1 pl-1 mb-5">
+        <Image
+          source={require("./assets/hamburger-menu.png")}
+          style={{ width: 35, height: 35 }}
+        />
+        <Text className="text-2xl">Weather</Text>
+        <Image
+          source={require("./assets/search-icon.png")}
+          style={{ width: 30, height: 30 }}
+        />
       </View>
-
-      {/* Vancouver Weather */}
-      <View className="bg-white p-6 rounded-lg shadow-md w-80 mt-4">
-        <Text className="text-2xl font-semibold mb-4">Vancouver Weather</Text>
-        <Text className="text-gray-600 mb-4">April 8, 2024</Text>
-        <View className="flex justify-between">
-          <View className="flex items-center">
-            <Text className="text-3xl mr-2">🌧️</Text>
-            <Text>Rainy</Text>
-          </View>
-          <Text className="text-2xl">10°C</Text>
+      <View className="bg-white p-5 w-11/12 rounded-lg">
+        <Text>Party Cloudy</Text>
+        <View className="flex-row">
+          <Text>April 21, 2024</Text>
         </View>
-        {/* Add hourly forecast here */}
-        {/* Add daily forecast here */}
-      </View>
-
-      {/* Toronto Weather */}
-      <View className="bg-white p-6 rounded-lg shadow-md w-80 mt-4">
-        <Text className="text-2xl font-semibold mb-4">Toronto Weather</Text>
-        <Text className="text-gray-600 mb-4">April 8, 2024</Text>
-        <View className="flex justify-between">
-          <View className="flex items-center">
-            <Text className="text-3xl mr-2">🌨️</Text>
-            <Text>Snowy</Text>
-          </View>
-          <Text className="text-2xl">1°C</Text>
+        <View className="flex-row justify-around ">
+          <Text>2pm</Text>
+          <Text>3pm</Text>
+          <Text>4pm</Text>
+          <Text>5pm</Text>
+          <Text>6pm</Text>
+        </View>
+        <View className="flex-row justify-around">
+          <Image
+            source={require("./assets/clouds/cloud-windy.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Image
+            source={require("./assets/lighting/lighting.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Image
+            source={require("./assets/moon/Moon.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Image
+            source={require("./assets/rain/rain-drops.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Image
+            source={require("./assets/sun/Sun.png")}
+            style={{ width: 65, height: 65 }}
+          />
+        </View>
+        <View className="flex-row justify-around ">
+          <Text>28°C</Text>
+          <Text>13°C</Text>
+          <Text>4°C</Text>
+          <Text>9°C</Text>
+          <Text>17°C</Text>
         </View>
       </View>
-
+      <View className="content-start">
+        <Text className="t">Forecast</Text>
+      </View>
+      <View className="bg-white p-5 w-11/12 mt-4 rounded-lg">
+        <Text>Partly Cloudly</Text>
+        <View className="flex-row">
+          <Text>April 21, 2024</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/clouds/day-cloud-sunny.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Monday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/wind/Wind.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Tuesday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/clouds/cloud-windy.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Wednesday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/moon/moon-with-wind.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Thursday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/lighting/lighting.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Friday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Image
+            source={require("./assets/clouds/day-cloud-snow.png")}
+            style={{ width: 65, height: 65 }}
+          />
+          <Text className="pt-6">Saturday</Text>
+          <Text className="pt-6">3°C/10°C</Text>
+        </View>
+      </View>
       <StatusBar style="auto" />
     </View>
   );

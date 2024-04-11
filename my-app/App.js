@@ -1,118 +1,85 @@
-import React from "react";
-import { StatusBar, View, Text, Image } from "react-native";
+import React, { useState } from "react";
+import {
+  StatusBar,
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 
 const App = () => {
+  const [weatherData, setWeatherData] = useState(null);
+  const [city, setCity] = useState("");
+
+  const fetchWeather = () => {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=84ff045ff659866878158ecff63b7963`
+    )
+      .then((response) => response.json())
+      .then((data) => setWeatherData(data))
+      .catch((error) => console.error("Error fetching weather:", error));
+  };
+
+  const displayWeather = () => {
+    if (!weatherData) return null;
+    const { name } = weatherData;
+
+    const { icon, description } = weatherData.weather[0];
+    const { temp, humidity, temp_max, temp_min } = weatherData.main;
+    const { speed } = weatherData.wind;
+    const { visibility } = weatherData;
+
+    return (
+      <View className="bg-sky-600" style="flex items-center">
+        <View className="flex-row justify-between bg-sky-600">
+          <Text className="capitalize font-bold text-2xl mt-8 text-white">
+            {description}
+          </Text>
+          <Image
+            source={{ uri: `https://openweathermap.org/img/wn/${icon}.png` }}
+            style={{ width: 90, height: 90 }}
+          />
+        </View>
+        <View className="flex-row justify-start bg-sky-600">
+          <Image
+            source={require("./assets/location-pin.png")}
+            className="w-5 h-5 mt-1 "
+          />
+          <Text className="text-white ml-3 text-base">{name}</Text>
+        </View>
+        <View className="flex-row justify-start bg-sky-600">
+          <Text className="text-white">{Math.floor(temp)}°C</Text>
+          <Text className="text-white">{speed} km/h</Text>
+          <Text className="text-white"> {humidity}%</Text>
+          <Text className="text-white">{visibility / 1000} km</Text>
+        </View>
+
+        <Text className="text-white">High: {Math.floor(temp_max)}°C</Text>
+        <Text className="text-white">Low: {Math.floor(temp_min)}°C</Text>
+      </View>
+    );
+  };
+
   return (
-    <View className="bg-slate-300 min-h-screen flex flex-col justify-center items-center">
-      <View className="flex-row justify-between bg-slate-300  w-11/12 pt-4 pb-4 pr-1 pl-1 mb-5">
-        <Image
-          source={require("./assets/hamburger-menu.png")}
-          style={{ width: 35, height: 35 }}
+    <View className="bg-sky-600 min-h-screen flex flex-col justify-center items-center p-5">
+      <View className="flex-row justify-between bg-sky-600 w-11/12 pt-4 pb-4 pr-1 pl-1 mb-5">
+        <TextInput
+          value={city}
+          onChangeText={setCity}
+          placeholder="Enter city"
+          className="bg-white p-3 rounded mb-4 w-11/12 mr-3"
         />
-        <Text className="text-2xl">Weather</Text>
-        <Image
-          source={require("./assets/search-icon.png")}
-          style={{ width: 30, height: 30 }}
-        />
+        <TouchableOpacity onPress={fetchWeather}>
+          <Image
+            source={require("./assets/search-icon.png")}
+            className="w-8 h-8 mt-1 "
+          />
+        </TouchableOpacity>
       </View>
-      <View className="bg-white p-5 w-11/12 rounded-lg">
-        <Text>Party Cloudy</Text>
-        <View className="flex-row">
-          <Text>April 21, 2024</Text>
-        </View>
-        <View className="flex-row justify-around ">
-          <Text>2pm</Text>
-          <Text>3pm</Text>
-          <Text>4pm</Text>
-          <Text>5pm</Text>
-          <Text>6pm</Text>
-        </View>
-        <View className="flex-row justify-around">
-          <Image
-            source={require("./assets/clouds/cloud-windy.png")}
-            style={{ width: 65, height: 65 }}
-          />
-          <Image
-            source={require("./assets/lighting/lighting.png")}
-            style={{ width: 65, height: 65 }}
-          />
-          <Image
-            source={require("./assets/moon/Moon.png")}
-            style={{ width: 65, height: 65 }}
-          />
-          <Image
-            source={require("./assets/rain/rain-drops.png")}
-            style={{ width: 65, height: 65 }}
-          />
-          <Image
-            source={require("./assets/sun/Sun.png")}
-            style={{ width: 65, height: 65 }}
-          />
-        </View>
-        <View className="flex-row justify-around ">
-          <Text>28°C</Text>
-          <Text>13°C</Text>
-          <Text>4°C</Text>
-          <Text>9°C</Text>
-          <Text>17°C</Text>
-        </View>
-      </View>
-      <View className="content-start">
-        <Text className="t">Forecast</Text>
-      </View>
-      <View className="bg-white p-5 w-11/12 mt-4 rounded-lg">
-        <Text>Partly Cloudly</Text>
-        <View className="flex-row">
-          <Text>April 21, 2024</Text>
-        </View>
-        <View className="flex-row justify-between">
-          <Image
-            source={require("./assets/clouds/day-cloud-sunny.png")}
-            style={{ width: 65, height: 65 }}
-          />
-          <Text className="pt-6">Monday</Text>
-          <Text className="pt-6">3°C/10°C</Text>
-        </View>
-        <View className="flex-row justify-between">
-          <Image
-            source={require("./assets/wind/Wind.png")}
-            style={{ width: 65, height: 65 }}
-          />
-          <Text className="pt-6">Monday</Text>
-          <Text className="pt-6">3°C/10°C</Text>
-        </View>
-        <View className="flex-row justify-between">
-          <Image
-            source={require("./assets/clouds/cloud-windy.png")}
-            style={{ width: 65, height: 65 }}
-          />
-          <Text className="pt-6">Monday</Text>
-          <Text className="pt-6">3°C/10°C</Text>
-        </View>
-        <View className="flex-row justify-between">
-          <Image
-            source={require("./assets/moon/moon-with-wind.png")}
-            style={{ width: 65, height: 65 }}
-          />
-          <Text className="pt-6">Monday</Text>
-          <Text className="pt-6">3°C/10°C</Text>
-        </View>
-        <View className="flex-row justify-between">
-          <Image
-            source={require("./assets/lighting/lighting.png")}
-            style={{ width: 65, height: 65 }}
-          />
-          <Text className="pt-6">Monday</Text>
-          <Text className="pt-6">3°C/10°C</Text>
-        </View>
-        <View className="flex-row justify-between">
-          <Image
-            source={require("./assets/clouds/day-cloud-snow.png")}
-            style={{ width: 65, height: 65 }}
-          />
-          <Text className="pt-6">Monday</Text>
-          <Text className="pt-6">3°C/10°C</Text>
-        </View>
+
+      <View className="bg-sky-600 p-5 w-11/12 rounded-lg">
+        {displayWeather()}
       </View>
       <StatusBar style="auto" />
     </View>
