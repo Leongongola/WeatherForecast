@@ -26,13 +26,22 @@ const App = () => {
     const { name } = weatherData;
 
     const { icon, description } = weatherData.weather[0];
-    const { temp, humidity, temp_max, temp_min } = weatherData.main;
+    const {
+      temp,
+      humidity,
+      temp_max,
+      temp_min,
+      feels_like,
+      pressure,
+      sea_level,
+    } = weatherData.main;
     const { speed } = weatherData.wind;
     const { visibility } = weatherData;
+    const { sunrise, sunset } = weatherData.sys;
 
     return (
-      <View className="bg-sky-600" style="flex items-center">
-        <View className="flex-row justify-between bg-sky-600">
+      <View className="bg-sky-800" style="flex items-center">
+        <View className="flex-row justify-between bg-sky-800">
           <Text className="capitalize font-bold text-2xl mt-8 text-white">
             {description}
           </Text>
@@ -41,29 +50,62 @@ const App = () => {
             style={{ width: 90, height: 90 }}
           />
         </View>
-        <View className="flex-row justify-start bg-sky-600">
+        <View className="flex-row justify-start bg-sky-800">
           <Image
             source={require("./assets/location-pin.png")}
             className="w-5 h-5 mt-1 "
           />
-          <Text className="text-white ml-3 text-base">{name}</Text>
+          <Text className="text-white ml-3 pt-0.5 text-base">{name}</Text>
         </View>
-        <View className="flex-row justify-start bg-sky-600">
-          <Text className="text-white">{Math.floor(temp)}°C</Text>
-          <Text className="text-white">{speed} km/h</Text>
-          <Text className="text-white"> {humidity}%</Text>
-          <Text className="text-white">{visibility / 1000} km</Text>
+        <View className="flex-row justify-between bg-sky-800 mt-4 mb-2 rounder-xl">
+          <View className="flex-row justify-start bg-sky-800">
+            <Text className="text-white font-bold text-5xl">
+              {Math.floor(temp)}
+            </Text>
+            <Image
+              source={require("./assets/thermometer.png")}
+              className="w-4 h-4 mt-1 "
+            />
+          </View>
+          <View className="flex-row justify-start bg-sky-800 pt-3">
+            <Image
+              source={require("./assets/wind.png")}
+              className="w-5 h-5 mt-1 "
+            />
+            <Text className="text-white font-bold text-sm pt-1">
+              {speed} km/h
+            </Text>
+          </View>
+          <View className="flex-row justify-start bg-sky-800 pt-3">
+            <Image
+              source={require("./assets/humidity.png")}
+              className="w-5 h-5 mt-1 "
+            />
+            <Text className="text-white font-bold pt-1"> {humidity}%</Text>
+          </View>
+          <View className="flex-row justify-start bg-sky-800 pt-3">
+            <Image
+              source={require("./assets/fog.png")}
+              className="w-5 h-5 mt-1 "
+            />
+            <Text className="text-white font-bold pt-1">
+              {visibility / 1000} km
+            </Text>
+          </View>
         </View>
-
-        <Text className="text-white">High: {Math.floor(temp_max)}°C</Text>
-        <Text className="text-white">Low: {Math.floor(temp_min)}°C</Text>
+        <View className="mt-4">
+          <Text className="text-white">
+            High Temp: {Math.floor(temp_max)}°C
+          </Text>
+          <Text className="text-white">Low Temp: {Math.floor(temp_min)}°C</Text>
+        </View>
       </View>
     );
   };
 
   return (
-    <View className="bg-sky-600 min-h-screen flex flex-col justify-center items-center p-5">
-      <View className="flex-row justify-between bg-sky-600 w-11/12 pt-4 pb-4 pr-1 pl-1 mb-5">
+    <View className="bg-sky-800 min-h-screen flex flex-col justify-center items-center p-5">
+      <View className="flex-row justify-between bg-sky-800 w-full pt-4 pb-4 pr-4 pl-1 mb-5">
         <TextInput
           value={city}
           onChangeText={setCity}
@@ -78,7 +120,7 @@ const App = () => {
         </TouchableOpacity>
       </View>
 
-      <View className="bg-sky-600 p-5 w-11/12 rounded-lg">
+      <View className="bg-sky-800 p-5 w-full rounded-lg">
         {displayWeather()}
       </View>
       <StatusBar style="auto" />
