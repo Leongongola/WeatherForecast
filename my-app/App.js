@@ -127,8 +127,20 @@ const App = () => {
             </Text>
           </View>
           <View className="flex-row justify-between border-2 border-white rounded-xl p-2  pt-4 pb-4 mt-1">
-            <Text className="text-white">Sunrise: {sunriseTime}am</Text>
-            <Text className="text-white">Sunset: {sunsetTime}pm</Text>
+            <View className="flex-row justify-start">
+              <Text className="text-white pt-1">Sunrise: {sunriseTime}am</Text>
+              <Image
+                source={require("./assets/sunrise.png")}
+                className="w-5 h-5 ml-1"
+              />
+            </View>
+            <View className="flex-row justify-start">
+              <Text className="text-white pt-1">Sunset: {sunsetTime}pm</Text>
+              <Image
+                source={require("./assets/sunset.png")}
+                className="w-5 h-5 ml-1"
+              />
+            </View>
           </View>
         </View>
       </View>
@@ -137,19 +149,26 @@ const App = () => {
 
   return (
     <View className="bg-sky-800 min-h-screen flex flex-col justify-center items-center p-5">
-      <View className="flex-row justify-between bg-sky-800 w-full pt-4 pb-4 pr-4 pl-1 mb-5">
-        <TextInput
-          value={city}
-          onChangeText={setCity}
-          placeholder="Enter city"
-          className="bg-white p-3 rounded mb-4 w-11/12 mr-3"
-        />
-        <TouchableOpacity onPress={fetchWeather}>
-          <Image
-            source={require("./assets/search-icon.png")}
-            className="w-8 h-8 mt-1 "
+      <View className="flex-column justify-between bg-sky-800 w-full pt-4 pb-4 pr-4 pl-1 mb-5">
+        <View className="items-center">
+          <Text className="text-white font-bold text-2xl mb-10">
+            WEATHER CHECK
+          </Text>
+        </View>
+        <View className="flex-row justify-between">
+          <TextInput
+            value={city}
+            onChangeText={setCity}
+            placeholder="Enter city"
+            className="bg-white p-3 rounded mb-4 w-11/12 mr-3"
           />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={fetchWeather}>
+            <Image
+              source={require("./assets/search-icon.png")}
+              className="w-8 h-8 mt-1 "
+            />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View className="bg-sky-800 p-5 w-full rounded-lg">
